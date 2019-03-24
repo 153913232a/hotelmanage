@@ -92,6 +92,8 @@
                 this.$router.push({
                   path: '/hy'
                 })
+              } else if(res.data.code === 1){
+                this.$message.error('该账户已被登陆请先注销！');
               } else {
                 this.$message.error('错了哦，请重检测账号或密码！');
               }

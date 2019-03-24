@@ -11,7 +11,6 @@ import './common/iconfont/iconfont'
 import router from './router'
 import store from './store/index'
 import axios from 'axios'
-
 Vue.config.productionTip = false
 let hotelMoney = {
   "A": 220,
@@ -27,7 +26,9 @@ Vue.prototype.socketApi = socketApi
 
 router.beforeEach((to, from, next) => { // 这里做个路由拦截，需要先登录
   if(to.matched.some(res => res.meta.requireAuth)) {
-    axios.get('/api/users/authrize').then(res => {
+    axios.get('/api/users/authrize', {
+      params: {username: store.state.userName}
+    }).then(res => {
       if (res.data.code === 0) {
         next()
       } else {

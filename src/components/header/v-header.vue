@@ -76,8 +76,11 @@
         }
       },
       zhuxiao() {
-        axios.get('/api/users/loginout').then(res => {
+        axios.get('/api/users/loginout', {
+          params: {username: this.$store.state.userName}
+        }).then(res => {
           if (res.data.code === 0) {
+            this.$store.commit('setUserName', '')
             this.$router.push({
               path:'/login'
             })
